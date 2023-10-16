@@ -170,3 +170,107 @@ Receiver buffer space tidak mengalami throttle karena Window size > Length segme
 `OTW`
 
 ## Pembahasan Soal UDP
+
+### Soal 1
+Select the first UDP segment in your trace. What is the packet number4 of this segment in the trace file? What type of application-layer payload or protocol message is being carried in this UDP segment? Look at the details of this packet in Wireshark. How many fields there are in the UDP header? (You shouldn’t look in the textbook! Answer these questions directly from what you observe in the packet trace.) What are the names of these fields?
+
+### Jawaban Soal 1
+![soal1UDP](./images/UDP1.png)
+```
+Application-layer payload or protocol message: SSDP
+Fields: 4 yang terdiri dari
+> Source Port: 47931
+> Destination Port: 1900
+> Length: 283
+> Checksum: 0xf7a8 [unverified]
+```
+
+### Soal 2
+By consulting the displayed information in Wireshark’s packet content field for this packet (or by consulting the textbook), what is the length (in bytes) of each of the UDP header fields?
+
+### Jawaban Soal 2
+![soal2UDP](./images/UDP2.png)
+```
+Pada frame no.5, dapat disimpulkan:
+UDP header memiliki panjang 8 bytes.
+Setiap UDP header fields memiliki panjang 2 bytes (memiliki 4 fields yang masing-masing berukuran 2 bytes).
+```
+Berikut adalah detailnya:
+- Source Port (2 bytes)
+![soal2UDP](./images/UDP2a.png)
+- Destination Port (2 bytes)
+![soal2UDP](./images/UDP2b.png)
+- Length (2 bytes)
+![soal2UDP](./images/UDP2c.png)
+- Checksum (2 bytes)
+![soal2UDP](./images/UDP2d.png)
+
+### Soal 3
+The value in the Length field is the length of what? (You can consult the text for this answer). Verify your claim with your captured UDP packet. 
+
+### Jawaban Soal 3
+![soal3UDP](./images/UDP3.png)
+```
+Field "Length" merupakan panjang dalam bytes dari segmen UDP (User Datagram Protocol)
+
+Length didapatkan melalui "UDP header + UDP payload".
+
+Misalkan dalam frame di atas, memiliki:
+Length: 292 bytes
+UDP payload: 284 bytes
+UDP header: 8 bytes (seperti pada soal no. 2)
+
+Maka 292 bytes = 284 bytes + 8 bytes
+```
+
+### Soal 4
+What is the maximum number of bytes that can be included in a UDP payload? (Hint: the answer to this question can be determined by your answer to 2. above)
+
+### Jawaban Soal 4
+```
+Jumlah maksimum bytes yang dapat dimasukkan dalam UDP payload adalah (2^16 - 1) bytes ditambah header bytes (8 bytes).
+
+Maka jumlah maksimum bytes yang dapat dimasukkan dalam UDP payload adalah 65535 bytes - 8 bytes = 65527 bytes.
+```
+
+### Soal 5
+What is the largest possible source port number? (Hint: see the hint in 4.)
+
+### Jawaban Soal 5
+```
+Kemungkinan source port number terbesar adalah (2^16 - 1) bytes yaitu 65535 bytes.
+```
+
+### Soal 6
+What is the protocol number for UDP? Give your answer in decimal notation. To answer this question, you’ll need to look into the Protocol field of the IP datagram containing this UDP segment (see Figure 4.13 in the text, and the discussion of IP header fields). 
+
+### Jawaban Soal 6
+![soal6UDP](./images/UDP6.png)
+```
+Nomor protocol untuk UDP adalah 11(hexadecimal) yang apabila dikonversikan ke decimal menjadi 17(decimal).
+```
+
+### Soal 7
+Examine the pair of UDP packets in which your host sends the first UDP packet and the second UDP packet is a reply to this first UDP packet. (Hint: for a second packet to be sent in response to a first packet, the sender of the first packet should be the destination of the second packet). What is the packet number of the first of these two UDP segments in the trace file? What is the packet number of the second of these two UDP segments in the trace file? Describe the relationship  between the port numbers in the two packets.
+
+### Jawaban Soal 7
+Kita dapat menentukan frame paket yang mengirim melalui kolom `info` atau mengecek `port` yang digunakan, misalkan saya memiliki frame no. 15 (sender) dan no. 17 (response)
+</br>
+</br>
+![soal7UDP](./images/UDP7a.png)
+```
+Frame 15 (Sender):
+Source Port: 58350
+Destination Port: 53
+```
+![soal7UDP](./images/UDP7b.png)
+```
+Frame 17 (Receiver):
+Source Port: 53
+Destination Port: 58350
+```
+```
+Relasi antara kedua port number dari paket tersebut adalah Source Port dari sender sama dengan Destination Port dari receiver. Kemudian Destination Port dari sender sama dengan Source Port dari receiver.
+```
+
+### THANK U! 😄
