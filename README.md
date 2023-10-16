@@ -97,6 +97,76 @@ making this calculation after the received of the ACK for the second segment, th
 Agak rumit...
 ```
 
+### Soal 7
+What is the length (header plus payload) of each of the first four data-carrying TCP segments?
 
+### Jawaban Soal 7
+Berikut adalah 4 paket yang men-carry TCP segments yaitu Frame 4, 5, 6, 9
+![soal7TCP](./images/TCP7.png)
+- Frame 4
+![soal7aTCP](./images/TCP7a.png)
+```
+Frame 4: Header Length: 32 bytes + TCP payload: 1448 bytes = 1480 bytes
+```
+- Frame 5
+![soal7bTCP](./images/TCP7b.png)
+```
+Frame 5: Header Length: 32 bytes + TCP payload: 1448 bytes = 1480 bytes
+```
+- Frame 6
+![soal7cTCP](./images/TCP7c.png)
+```
+Frame 6: Header Length: 32 bytes + TCP payload: 1448 bytes = 1480 bytes
+```
+- Frame 9
+![soal7dTCP](./images/TCP7d.png)
+```
+Frame 9: Header Length: 32 bytes + TCP payload: 1448 bytes = 1480 bytes
+```
+Total
+```
+Frame 4: Header Length: 32 bytes + TCP payload: 1448 bytes = 1480 bytes
+Frame 5: Header Length: 32 bytes + TCP payload: 1448 bytes = 1480 bytes
+Frame 6: Header Length: 32 bytes + TCP payload: 1448 bytes = 1480 bytes
+Frame 9: Header Length: 32 bytes + TCP payload: 1448 bytes = 1480 bytes
+Total = 5920 bytes
+```
 
-### Pembahasan Soal UDP
+### Soal 8
+What is the minimum amount of available buffer space advertised to the client by gaia.cs.umass.edu among these first four data-carrying TCP segments? Does the lack of receiver buffer space ever throttle the sender for these first four data-carrying segments?
+
+### Jawaban Soal 8
+first four data-carrying TCP segments adalah (sama seperti no. 7)
+![soal8TCP](./images/TCP7.png)
+__Note: Untuk melihat minimum amount of available buffer space dapat melalui informasi "Window" pada tiap frame yang mengandung TCP segments.__
+- Frame 4
+![soal8aTCP](./images/TCP8a.png)
+```
+Window: 2058
+Length: 1448 bytes
+```
+- Frame 5
+![soal8bTCP](./images/TCP8b.png)
+```
+Window: 2058
+Length: 1448 bytes
+```
+- Frame 6
+![soal8cTCP](./images/TCP8c.png)
+```
+Window: 2058
+Length: 1448 bytes
+```
+- Frame 9
+![soal8dTCP](./images/TCP8d.png)
+```
+Window: 2058
+Length: 1448 bytes
+```
+```
+Receiver buffer space tidak mengalami throttle karena Window size > Length segment yang dikirimkan.
+```
+### Soal 9 - 14
+`OTW`
+
+## Pembahasan Soal UDP
